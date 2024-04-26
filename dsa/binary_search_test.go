@@ -11,11 +11,19 @@ func TestIntArrBinarySearchFound(t *testing.T) {
     }
 }
 
-func TestIntArrBinarySearchNotFound(t *testing.T) {
+func TestIntArrBinarySearchNotFoundA(t *testing.T) {
     var intArr []int = []int{1, 3, 4, 5, 7, 10, 11}
     pos, found := BinarySearch(intArr, 8)
     if pos != 5 || found != false {
         t.Fatalf("Binary Search failed for Int Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 5, pos, false, found)
+    }
+}
+
+func TestIntArrBinarySearchNotFoundB(t *testing.T) {
+    var intArr []int = []int{1, 2, 5, 11}
+    pos, found := BinarySearch(intArr, 3)
+    if pos != 2 || found != false {
+        t.Fatalf("Binary Search failed for Int Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 2, pos, false, found)
     }
 }
 
@@ -45,7 +53,7 @@ func (c CustomComparableType) Equals(l Comparable) bool {
 }
 
 func (c CustomComparableType) Less(l Comparable) bool {
-    return c.key < l.(CustomComparableType).key
+    return c.value < l.(CustomComparableType).value
 }
 
 type SortableCustomType []CustomComparableType

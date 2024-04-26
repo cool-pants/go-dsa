@@ -1,6 +1,8 @@
 package dsa
 
-import "cmp"
+import (
+	"cmp"
+)
 
 
 type Comparable interface {

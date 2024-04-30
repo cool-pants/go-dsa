@@ -11,7 +11,7 @@ type Comparable interface {
 }
 
 func BinarySearch[K cmp.Ordered](a []K, x K) (int, bool) {
-    start, end := 0, len(a)
+    start, end := 0, len(a) - 1
     var mid int
     for start <= end {
         mid = start + (end-start)/2
@@ -27,7 +27,7 @@ func BinarySearch[K cmp.Ordered](a []K, x K) (int, bool) {
 }
 
 func BinarySearchCustom[K Comparable](a []K, x K) (int, bool) {
-    start, end := 0, len(a)
+    start, end := 0, len(a) - 1
     var mid int
     for start <= end {
         mid = start + (end-start)/2

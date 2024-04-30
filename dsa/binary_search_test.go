@@ -1,46 +1,33 @@
 package dsa
 
-import "testing"
+import (
+    "testing"
+    "github.com/stretchr/testify/assert"
+)
 
 
 func TestIntArrBinarySearchFound(t *testing.T) {
-    var intArr []int = []int{1, 3, 4, 5, 6, 10, 11}
-    pos, found := BinarySearch(intArr, 6)
-    if pos != 4 || found != true {
-        t.Fatalf("Binary Search failed for Int Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 4, pos, true, found)
-    }
-}
-
-func TestIntArrBinarySearchNotFoundA(t *testing.T) {
     var intArr []int = []int{1, 3, 4, 5, 7, 10, 11}
-    pos, found := BinarySearch(intArr, 8)
-    if pos != 5 || found != false {
-        t.Fatalf("Binary Search failed for Int Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 5, pos, false, found)
-    }
-}
-
-func TestIntArrBinarySearchNotFoundB(t *testing.T) {
-    var intArr []int = []int{1, 2, 5, 11}
-    pos, found := BinarySearch(intArr, 3)
-    if pos != 2 || found != false {
-        t.Fatalf("Binary Search failed for Int Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 2, pos, false, found)
-    }
+    pos, found := BinarySearch(intArr, 7)
+    pos2, found2 := BinarySearch(intArr, 6)
+    pos3, found3 := BinarySearch(intArr, 8)
+    assert.Equal(t, 4, pos)
+    assert.Equal(t, true, found)
+    assert.Equal(t, 4, pos2)
+    assert.Equal(t, false, found2)
+    assert.Equal(t, 5, pos3)
+    assert.Equal(t, false, found3)
 }
 
 func TestRuneArrBinarySearchFound(t *testing.T) {
     var runeArr []rune = []rune{'a', 'c', 'd', 'x', 'z'}
     pos, found := BinarySearch(runeArr, 'd')
-    if pos != 2 || found != true {
-        t.Fatalf("Binary Search failed for Rune Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 2, pos, true, found)
-    }
-}
+    pos2, found2 := BinarySearch(runeArr, 'b')
 
-func TestRuneArrBinarySearchNotFound(t *testing.T) {
-    var runeArr []rune = []rune{'a', 'c', 'd', 'x', 'z'}
-    pos, found := BinarySearch(runeArr, 'b')
-    if pos != 1 || found != false {
-        t.Fatalf("Binary Search failed for Rune Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 1, pos, false, found)
-    }
+    assert.Equal(t, 2, pos)
+    assert.Equal(t, true, found)
+    assert.Equal(t, 1, pos2)
+    assert.Equal(t, false, found2)
 }
 
 type CustomComparableType struct {
@@ -90,33 +77,11 @@ func TestCustomComparableArrBinarySearchFound(t *testing.T) {
         },
     }
     pos, found := BinarySearchCustom(customArr, CustomComparableType{key: "b", value: 2})
-    if pos != 1 || found != true {
-        t.Fatalf("Binary Search failed for CustomComparableType Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 1, pos, true, found)
-    }
-}
+    pos2, found2 := BinarySearchCustom(customArr, CustomComparableType{key: "b", value: 3})
 
-func TestCustomComparableArrBinarySearchNotFound(t *testing.T) {
-    var customArr SortableCustomType = SortableCustomType{
-        CustomComparableType{
-            key: "a",
-            value: 1,
-        },
-        CustomComparableType{
-            key: "b",
-            value: 2,
-        },
-        CustomComparableType{
-            key: "c",
-            value: 5,
-        },
-        CustomComparableType{
-            key: "d",
-            value: 11,
-        },
-    }
-    pos, found := BinarySearchCustom(customArr, CustomComparableType{key: "b", value: 3})
-    if pos != 2 || found != false {
-        t.Fatalf("Binary Search failed for CustomComparableType Arr\nPosition:\n Ex: %d Got: %d\nFound:\n Ex: %v Got: %v", 2, pos, false, found)
-    }
+    assert.Equal(t, 1, pos)
+    assert.Equal(t, true, found)
+    assert.Equal(t, 2, pos2)
+    assert.Equal(t, false, found2)
 }
 
